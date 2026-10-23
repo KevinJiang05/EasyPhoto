@@ -1,17 +1,17 @@
 # EasyPhoto
 
-**为家中长辈做的简洁 Android 相机与相册。**
+这是我给奶奶做的一个 Android 相机，她现在已经开始用了。
 
-拍照、看照片、回到首页。用更大的入口和清晰的图形操作，减少日常拍照的操作负担；维护设置交给家属。
-
-A simple Android camera and gallery for older adults, built around large controls and a short everyday workflow.
+我想把她要用的东西放在最显眼的地方：拍照、自拍、看照片。按钮大一些，步骤少一些，平时用不着的设置留给家里人处理。EasyPhoto 就是围绕这几件事慢慢做出来的。
 
 [![Android CI](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml/badge.svg)](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-476B5B.svg)](LICENSE)
 
-[下载 APK](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [观看操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4) · [设计与技术案例](docs/showcase.md) · [构建与开发](docs/development.md)
+[下载 APK](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [看一段操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4)
 
-## 看看实际操作
+## 用起来是什么样
+
+打开以后，首页就是三个大入口。点进去拍照，拍完可以接着拍，也可以去看照片。相册默认一排两张，点开后能翻页、放大，再回到首页。
 
 ![EasyPhoto 操作预览：模拟器中的拍照与相册流程](docs/media/demo.gif)
 
@@ -24,56 +24,46 @@ A simple Android camera and gallery for older adults, built around large control
 </tr>
 </table>
 
-以上为 App 在 Android 模拟器中的实际运行画面，照片为专门准备的非个人演示素材。它们用于展示交互，不代表真机画质或性能。[素材来源](docs/media/README.md)
+这里放的是模拟器录屏和截图，相册里的风景画也是专门准备的演示图，没有用家人的照片。相机里的色块是模拟器测试画面，真机拍出来当然不是这样。[素材说明](docs/media/README.md)
 
-## 为什么做
+## 给家里人准备的几个功能
 
-这个项目来自家庭长辈的实际拍照需求：希望常用功能容易找到，拍完后容易看到结果，遇到设置和维护时由家属处理。项目已在家庭场景中开始使用；目前没有开展正式用户研究，也不提供未经测量的成效数字。
+- **拍照和看照片放在前面。** 后置、前置、相册各有一个大入口，快门、返回和翻页都用了图形按钮。
+- **可以按习惯调整。** 要不要震动、拍完要不要响一声、照片能不能缩放，这些都能由家里人设置。
+- **照片存在手机里。** 保存位置是 `Pictures/EasyPhoto/`，App 里的相册只看这个目录。
+- **设置单独收起来。** 长按首页底部的版本信息 4 秒，由家属设置 6 位数字 PIN。进去后可以调整拍摄设置，也可以整理、删除照片。
+- **想收到照片的话，可以接飞书。** 这个功能默认关闭。开启后，照片先在手机里保存，再发到配置好的群里；网络不好也不会耽误拍照。
 
-## 保持简单的几件事
+没有广告，不需要注册账号，也没有内购。飞书通知打开后，群里会留下一份照片，配置前可以先看看[隐私与权限说明](docs/privacy-and-permissions.md)。
 
-- **日常只保留三个入口**：后置拍摄、前置拍摄、看照片。
-- **图形操作与可选反馈**：圆环快门、返回图标、闪光灯状态、翻页箭头，以及可关闭的震动和拍摄提示音。
-- **照片先留在本机**：保存在 `Pictures/EasyPhoto/`，应用相册仅查询该目录；支持两列大图、全屏切换和缩放。
-- **家属单独维护**：长按首页底部版本信息 4 秒，首次设置并确认 6 位数字 PIN；进入后可管理照片、调整显示和拍摄设置。
-- **可选飞书照片通知**：默认关闭。开启后先保存照片，再异步上传至家属指定的群，通知失败不会阻塞拍照。
+## 想给家里的长辈试试
 
-无广告、统计、账号注册或内购。飞书通知启用后会产生云端照片副本，具体见 [隐私与权限说明](docs/privacy-and-permissions.md)。
+在 [Releases](https://github.com/KevinJiang05/EasyPhoto/releases/latest) 下载 APK，允许对应来源安装后就能使用。支持 Android 8.0 及以上，当前版本是 `0.3.0`，第一次进入拍摄页会询问相机权限。
 
-## 技术上解决了什么
+建议家里人先陪着走一遍：拍一张、找到它、点开看看，再返回首页。顺手把声音、震动和相册大小调合适，设置好 PIN，最后关闭管理员模式。
 
-采用 Kotlin、Jetpack Compose、CameraX、MediaStore 和 WorkManager，保持单模块结构。
+PIN 请记好。忘记后需要清除应用数据重新配置，飞书等设置也会一起重置。飞书通知需要自己填写应用凭据和群机器人 Webhook，安装包里没有预置配置。
 
-- **相机资源有明确归属**：根据既有 Mate 20 问题定位，停用首页实时预览，避免首页与拍摄页争用 CameraX 导致卡死或返回闪退。
-- **核心流程与通知分开**：MediaStore 保存成功后才入队，网络恢复后由 WorkManager 重试。
-- **维护不进入老人日常流程**：管理员 PIN 在每台设备上设置，只保存随机盐与摘要；飞书凭据使用 Android Keystore 加密。
+之前在 Huawei Mate 20 上做过真机测试。这次发布新增的 PIN 流程和小屏结果页调整已经在模拟器上检查过，还没来得及拿真机复测，覆盖升级也待确认。不同手机的相机表现会有差别，夜景、HDR 这些效果也不能按原厂相机来期待。具体记录放在[验收文档](docs/acceptance-record.md)里。
 
-[查看完整案例](docs/showcase.md) · [架构说明](docs/architecture.md)
+## 写代码时踩过的坑
 
-## 安装与验证状态
+最折腾的是相机。早期想在首页也放实时预览，结果在 Mate 20 上遇到了卡死和拍照失败。后来查到，首页退出时的解绑操作会把拍摄页的相机也一起关掉。现在首页用静态画面，相机留在拍摄页打开，避免两边争用。
 
-- Android 8.0 及以上，当前版本 `0.3.0`。
-- 从 [Releases](https://github.com/KevinJiang05/EasyPhoto/releases/latest) 下载签名 APK，允许安装来源后安装；首次进入拍摄页时申请相机权限。
-- 已有 Huawei Mate 20 上的历史真机验收记录；本轮展示使用模拟器，新 PIN 流程的真机复测仍待后续进行。
-- 自动化测试、构建和 lint 的状态见上方 CI 与 [验收记录](docs/acceptance-record.md)。模拟器操作验证与历史真机结果分别记录。
-- 不同机型的相机效果和默认桌面行为需要分别验证；夜景、HDR 等厂商原生相机能力不在保证范围内。
+飞书通知则放到了后台：照片存好以后才交给 WorkManager，断网了就等网络恢复再重试。拍照本身不用等上传结果。
 
-应用可作为默认桌面候选，提供可选的软锁定返回尝试；不具备企业 Kiosk 的强制锁机能力。
+这些过程和取舍整理在了[项目小记](docs/showcase.md)和[架构说明](docs/architecture.md)里，有兴趣可以接着看。
 
-## 家属配置
+## 自己编译
 
-首次长按首页底部版本信息设置 PIN，请妥善记住。忘记 PIN 需要清除应用数据重新配置，飞书等应用设置也会重置。维护完成后关闭管理员模式，再交给日常使用者。
+项目用 Kotlin、Jetpack Compose、CameraX、MediaStore 和 WorkManager，只有一个 App 模块。
 
-飞书通知需要在管理员设置中填写自建应用凭据与群机器人 Webhook，并先测试连接。源码和 APK 不内置个人飞书配置。
-
-## 开发与许可
-
-使用 JDK 17/21、Android SDK Platform 36 和仓库 Gradle Wrapper。Windows 验证命令：
+准备 JDK 17/21、Android SDK Platform 36，使用仓库里的 Gradle Wrapper。Windows 下执行：
 
 ```powershell
 .\gradlew.bat testDebugUnitTest assembleDebug lintDebug
 ```
 
-[完整构建、安装和签名说明](docs/development.md) · [手动验收清单](docs/manual-test-checklist.md)
+[构建、安装与签名说明](docs/development.md) · [手动测试清单](docs/manual-test-checklist.md)
 
-项目源码采用 [MIT License](LICENSE)，第三方依赖保留其各自许可证。开发者联系邮箱可在 App 首页查看；问题和建议也可提交到 [Issues](https://github.com/KevinJiang05/EasyPhoto/issues)。
+源码按 [MIT License](LICENSE) 开放，欢迎拿去改成适合自己家人的样子。遇到问题可以提 [Issue](https://github.com/KevinJiang05/EasyPhoto/issues)，也可以通过 App 首页的邮箱联系我。
