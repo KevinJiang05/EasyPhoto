@@ -23,14 +23,15 @@ EasyPhoto 是单模块 Android App，使用 Kotlin、Jetpack Compose、CameraX �
 - 震动使用 `VIBRATE` 权限直接触发短振动，不依赖系统“触摸时振动”开关；提示音使用媒体音量通道，避免勿扰模式屏蔽通知音。
 - 前置镜像设置同时作用于 `PreviewView` 与 `ImageCapture.Metadata`，保证预览和保存照片方向一致。
 - Android 10+ 使用 `RELATIVE_PATH` 和 `IS_PENDING`。
-- Android 9 使用公共 Pictures/EasyPhoto 路径，并只在需要时申请读写权限。
+- Android 8–9 使用公共 Pictures/EasyPhoto 路径，并只在需要时申请读写权限。
 - 相册只查询 EasyPhoto 目录，不扫描全盘。
 - 相机与相册直接使用 CameraX 和 MediaStore；可选飞书通知使用 HTTP 和 WorkManager，不引入 DI 框架。
 
 ## 默认桌面能力
 
-Manifest 同时声明 `MAIN + LAUNCHER` 和 `MAIN + HOME + DEFAULT`。应用不会自动修改默认桌面，不实现 Device Owner、Lock Task、无障碍拦截或 Kiosk。
-# 飞书照片通知（可选）
+Manifest 同时声明 `MAIN + LAUNCHER` 和 `MAIN + HOME + DEFAULT`。应用不会自动修改默认桌面。管理员可开启软锁定，在离开应用时尝试返回；该行为受系统限制，不实现 Device Owner、Lock Task 或无障碍拦截，也不等同于企业 Kiosk。
+
+## 飞书照片通知（可选）
 
 管理员开启通知后，`CameraScreen` 仅在照片已成功写入 `Pictures/EasyPhoto/` 后，将对应 `content://` 地址提交给 `FeishuPhotoScheduler`。任务由 WorkManager 在已联网时执行；网络问题使用指数退避重试，最多 5 次，且不会阻塞相机。
 

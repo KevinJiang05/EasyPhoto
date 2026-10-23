@@ -5,7 +5,6 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -57,8 +56,8 @@ fun CaptureResultScreen(
             model = photoUri,
             contentDescription = "刚拍的照片",
             modifier = Modifier
+                .weight(1f)
                 .fillMaxWidth()
-                .aspectRatio(1f)
                 .clip(RoundedCornerShape(20.dp)),
             contentScale = ContentScale.Crop,
         )

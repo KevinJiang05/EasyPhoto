@@ -4,6 +4,17 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+val releaseSigning = mapOf(
+    "storeFile" to System.getenv("EASYPHOTO_KEYSTORE"),
+    "storePassword" to System.getenv("EASYPHOTO_STORE_PASSWORD"),
+    "keyAlias" to System.getenv("EASYPHOTO_KEY_ALIAS"),
+    "keyPassword" to System.getenv("EASYPHOTO_KEY_PASSWORD"),
+)
+val hasReleaseSigning = releaseSigning.values.all { !it.isNullOrBlank() }
+if (releaseSigning.values.any { !it.isNullOrBlank() } && !hasReleaseSigning) {
+    throw GradleException("Release signing requires all four EASYPHOTO_* signing environment variables; see docs/development.md")
+}
+
 android {
     namespace = "com.kevin.easyphoto"
     compileSdk = 36
@@ -12,13 +23,30 @@ android {
         applicationId = "com.kevin.easyphoto"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
         compose = true
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseSigning.getValue("storeFile")!!)
+                storePassword = releaseSigning.getValue("storePassword")
+                keyAlias = releaseSigning.getValue("keyAlias")
+                keyPassword = releaseSigning.getValue("keyPassword")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
+        }
     }
 
     compileOptions {

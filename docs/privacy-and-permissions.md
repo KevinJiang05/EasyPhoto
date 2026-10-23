@@ -4,9 +4,9 @@
 
 必须存在。EasyPhoto 的核心功能是拍照，需要相机权限才能打开后置摄像头。权限只在用户进入“拍照”功能时申请，不在 App 首次启动时申请。
 
-## Android 9 读写存储权限
+## Android 8–9 读写存储权限
 
-Mate 20 当前目标为 Android 9。Android 9 的公共图片目录仍使用旧存储权限模型，保存和读取 `Pictures/EasyPhoto/` 可能需要：
+Android 8–9 的公共图片目录仍使用旧存储权限模型，保存和读取 `Pictures/EasyPhoto/` 可能需要：
 
 - `READ_EXTERNAL_STORAGE`，`maxSdkVersion=28`
 - `WRITE_EXTERNAL_STORAGE`，`maxSdkVersion=28`
