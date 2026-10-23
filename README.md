@@ -1,17 +1,15 @@
 # EasyPhoto
 
-这是我给奶奶做的一个 Android 相机，她现在已经开始用了。
+EasyPhoto 是一个简单的 Android 相机和相册，主要给家里的长辈使用。
 
-我想把她要用的东西放在最显眼的地方：拍照、自拍、看照片。按钮大一些，步骤少一些，平时用不着的设置留给家里人处理。EasyPhoto 就是围绕这几件事慢慢做出来的。
+最初是给奶奶做的，她目前已经在用。首页保留后置拍摄、前置拍摄和看照片三个入口，字体和按钮偏大，其他设置由家属调整。
 
 [![Android CI](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml/badge.svg)](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-476B5B.svg)](LICENSE)
 
-[下载 APK](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [看一段操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4)
+[下载 APK](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4)
 
-## 用起来是什么样
-
-打开以后，首页就是三个大入口。点进去拍照，拍完可以接着拍，也可以去看照片。相册默认一排两张，点开后能翻页、放大，再回到首页。
+## 界面
 
 ![EasyPhoto 操作预览：模拟器中的拍照与相册流程](docs/media/demo.gif)
 
@@ -24,46 +22,46 @@
 </tr>
 </table>
 
-这里放的是模拟器录屏和截图，相册里的风景画也是专门准备的演示图，没有用家人的照片。相机里的色块是模拟器测试画面，真机拍出来当然不是这样。[素材说明](docs/media/README.md)
+以上是模拟器中的实际界面，相册使用准备的风景绘图，相机显示模拟器测试画面，没有使用家庭照片。[素材说明](docs/media/README.md)
 
-## 给家里人准备的几个功能
+## 功能
 
-- **拍照和看照片放在前面。** 后置、前置、相册各有一个大入口，快门、返回和翻页都用了图形按钮。
-- **可以按习惯调整。** 要不要震动、拍完要不要响一声、照片能不能缩放，这些都能由家里人设置。
-- **照片存在手机里。** 保存位置是 `Pictures/EasyPhoto/`，App 里的相册只看这个目录。
-- **设置单独收起来。** 长按首页底部的版本信息 4 秒，由家属设置 6 位数字 PIN。进去后可以调整拍摄设置，也可以整理、删除照片。
-- **想收到照片的话，可以接飞书。** 这个功能默认关闭。开启后，照片先在手机里保存，再发到配置好的群里；网络不好也不会耽误拍照。
+- 后置与前置拍摄，使用图形快门、返回和闪光灯按钮。
+- 相册默认一排两张，支持全屏查看、翻页和缩放。
+- 可以调整相册列数、按钮震动、拍照提示音和拍照后的操作。
+- 照片保存在手机的 `Pictures/EasyPhoto/`，应用相册只查询这个目录。
+- 管理员页面提供拍摄设置和照片整理、批量删除。
 
-没有广告，不需要注册账号，也没有内购。飞书通知打开后，群里会留下一份照片，配置前可以先看看[隐私与权限说明](docs/privacy-and-permissions.md)。
+另有可选的飞书照片通知，默认关闭。开启后，照片先保存到手机，再由后台任务发送到配置好的群；上传失败不影响拍照。群里会保留照片副本，具体见[隐私与权限说明](docs/privacy-and-permissions.md)。
 
-## 想给家里的长辈试试
+应用没有广告、账号注册和内购。
 
-在 [Releases](https://github.com/KevinJiang05/EasyPhoto/releases/latest) 下载 APK，允许对应来源安装后就能使用。支持 Android 8.0 及以上，当前版本是 `0.3.0`，第一次进入拍摄页会询问相机权限。
+## 安装与设置
 
-建议家里人先陪着走一遍：拍一张、找到它、点开看看，再返回首页。顺手把声音、震动和相册大小调合适，设置好 PIN，最后关闭管理员模式。
+支持 Android 8.0 及以上，当前版本为 `0.3.0`。从 [Releases](https://github.com/KevinJiang05/EasyPhoto/releases/latest) 下载 APK，允许对应来源安装。第一次进入拍摄页时会申请相机权限。
 
-PIN 请记好。忘记后需要清除应用数据重新配置，飞书等设置也会一起重置。飞书通知需要自己填写应用凭据和群机器人 Webhook，安装包里没有预置配置。
+初次使用时，可以由家里人陪着拍一张、找到照片，再返回首页，按使用习惯调整声音、震动和相册列数。
 
-之前在 Huawei Mate 20 上做过真机测试。这次发布新增的 PIN 流程和小屏结果页调整已经在模拟器上检查过，还没来得及拿真机复测，覆盖升级也待确认。不同手机的相机表现会有差别，夜景、HDR 这些效果也不能按原厂相机来期待。具体记录放在[验收文档](docs/acceptance-record.md)里。
+长按首页底部版本信息 4 秒可进入管理员页面，首次需要设置并确认 6 位数字 PIN。设置完成后关闭管理员模式。忘记 PIN 需要清除应用数据重新配置，飞书等设置也会重置。
 
-## 写代码时踩过的坑
+使用飞书通知需要自行填写应用凭据和群机器人 Webhook，安装包中没有预置配置。
 
-最折腾的是相机。早期想在首页也放实时预览，结果在 Mate 20 上遇到了卡死和拍照失败。后来查到，首页退出时的解绑操作会把拍摄页的相机也一起关掉。现在首页用静态画面，相机留在拍摄页打开，避免两边争用。
+## 使用情况
 
-飞书通知则放到了后台：照片存好以后才交给 WorkManager，断网了就等网络恢复再重试。拍照本身不用等上传结果。
+早期版本在 Huawei Mate 20 上做过真机测试。`0.3.0` 新增的 PIN 流程和小屏结果页调整已在模拟器上检查，真机复测和覆盖升级验证仍待完成。不同手机的相机表现会有差别，夜景、HDR 等效果也取决于机型。
 
-这些过程和取舍整理在了[项目小记](docs/showcase.md)和[架构说明](docs/architecture.md)里，有兴趣可以接着看。
+[验收记录](docs/acceptance-record.md) · [手动测试清单](docs/manual-test-checklist.md)
 
-## 自己编译
+## 开发
 
-项目用 Kotlin、Jetpack Compose、CameraX、MediaStore 和 WorkManager，只有一个 App 模块。
+项目使用 Kotlin、Jetpack Compose、CameraX、MediaStore 和 WorkManager，采用单模块结构。首页使用静态画面，相机在拍摄页打开；照片保存与飞书发送分开处理。
 
-准备 JDK 17/21、Android SDK Platform 36，使用仓库里的 Gradle Wrapper。Windows 下执行：
+本地构建需要 JDK 17/21、Android SDK Platform 36 和仓库中的 Gradle Wrapper。Windows 下执行：
 
 ```powershell
 .\gradlew.bat testDebugUnitTest assembleDebug lintDebug
 ```
 
-[构建、安装与签名说明](docs/development.md) · [手动测试清单](docs/manual-test-checklist.md)
+[构建与签名说明](docs/development.md) · [架构说明](docs/architecture.md) · [设计与实现记录](docs/showcase.md)
 
-源码按 [MIT License](LICENSE) 开放，欢迎拿去改成适合自己家人的样子。遇到问题可以提 [Issue](https://github.com/KevinJiang05/EasyPhoto/issues)，也可以通过 App 首页的邮箱联系我。
+源码采用 [MIT License](LICENSE)，可以按自己家人的需要修改。问题可提交到 [Issues](https://github.com/KevinJiang05/EasyPhoto/issues)，也可以通过 App 首页的邮箱联系开发者。
