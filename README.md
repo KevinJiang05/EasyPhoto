@@ -7,7 +7,7 @@ EasyPhoto 是一个简单的 Android 相机和相册，主要给家里的长辈�
 [![Android CI](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml/badge.svg)](https://github.com/KevinJiang05/EasyPhoto/actions/workflows/android.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-476B5B.svg)](LICENSE)
 
-[下载 APK](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4)
+[下载 APK（Android 8.0+）](https://github.com/KevinJiang05/EasyPhoto/releases/latest) · [40 秒操作演示](https://github.com/KevinJiang05/EasyPhoto/releases/download/v0.3.0/EasyPhoto-demo.mp4) · [安装与设置](#安装与设置)
 
 ## 界面
 
@@ -40,6 +40,8 @@ EasyPhoto 是一个简单的 Android 相机和相册，主要给家里的长辈�
 
 支持 Android 8.0 及以上，当前版本为 `0.3.0`。从 [Releases](https://github.com/KevinJiang05/EasyPhoto/releases/latest) 下载 APK，允许对应来源安装。第一次进入拍摄页时会申请相机权限。
 
+`0.3.0` 的 PIN 流程和小屏结果页调整已在模拟器上检查，真机复测和覆盖升级验证仍待完成。已有安装请先查看[签名兼容说明](docs/development.md#安装)。
+
 初次使用时，可以由家里人陪着拍一张、找到照片，再返回首页，按使用习惯调整声音、震动和相册列数。
 
 长按首页底部版本信息 4 秒可进入管理员页面，首次需要设置并确认 6 位数字 PIN。设置完成后关闭管理员模式。忘记 PIN 需要清除应用数据重新配置，飞书等设置也会重置。
@@ -48,7 +50,7 @@ EasyPhoto 是一个简单的 Android 相机和相册，主要给家里的长辈�
 
 ## 使用情况
 
-早期版本在 Huawei Mate 20 上做过真机测试。`0.3.0` 新增的 PIN 流程和小屏结果页调整已在模拟器上检查，真机复测和覆盖升级验证仍待完成。不同手机的相机表现会有差别，夜景、HDR 等效果也取决于机型。
+早期版本在 Huawei Mate 20 上做过真机测试。不同手机的相机表现会有差别，夜景、HDR 等效果也取决于机型。
 
 [验收记录](docs/acceptance-record.md) · [手动测试清单](docs/manual-test-checklist.md)
 
